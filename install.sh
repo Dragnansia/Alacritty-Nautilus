@@ -34,7 +34,7 @@ fi
 mkdir -p ~/.local/share/nautilus-python/extensions
 rm -f ~/.local/share/nautilus-python/extensions/alacritty-nautilus.py
 
-cp alacritty-nautilus.py ~/.local/share/nautilus-python/extensions
+wget --show-progress -q -O ~/.local/share/nautilus-python/extensions/alacritty-nautilus.py https://raw.githubusercontent.com/Dragnansia/Alacritty-Nautilus/master/alacritty-nautilus.py
 
 nautilus -q
 echo "Installation finish"
