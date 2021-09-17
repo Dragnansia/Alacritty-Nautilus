@@ -12,12 +12,17 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
     def __init__(self):
         pass
 
-    def launch_alacritty(self, menu, files):
-        path = files[0].get_location().get_path()
+    def launch_alacritty(self, menu: Nautilus.MenuItem, files):
+        path = ''
         args = '--working-directory'
 
-        if os.path.isdir(path) and os.path.exists(path):
-            subprocess.Popen([PROCESSNAME, args, path], shell=False)
+        for file in files:
+            dirpath = file.get_location().get_path()
+            print(dirpath)
+            if os.path.isdir(dirpath) and os.path.exists(dirpath):
+                path = dirpath
+
+        subprocess.Popen([PROCESSNAME, args, path], shell=False)
 
     def get_file_items(self, window, files):
         item = Nautilus.MenuItem(
