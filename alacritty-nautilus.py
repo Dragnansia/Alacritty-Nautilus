@@ -4,7 +4,7 @@ require_version('Gtk', '3.0')
 require_version('Nautilus', '3.0')
 
 from gi.repository import Nautilus, GObject
-from subprocess import call
+import os, subprocess
 
 PROCESSNAME = 'alacritty'
 
@@ -15,7 +15,9 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
     def launch_alacritty(self, menu, files):
         path = files[0].get_location().get_path()
         args = '--working-directory'
-        call(PROCESSNAME + ' ' + args + ' ' + path)
+
+        if os.path.isdir(path) and os.path.exists(path):
+            subprocess.Popen([PROCESSNAME, args, path], shell=False)
 
     def get_file_items(self, window, files):
         item = Nautilus.MenuItem(
