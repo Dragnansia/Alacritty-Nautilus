@@ -27,7 +27,7 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
         item = Nautilus.MenuItem(
             name="AlacrittyOpen",
             label="Ouvrir dans Alacritty",
-            tip="Open the current directory on alacritty"
+            tip="Ouvre le dossier sélectionné dans alacritty"
         )
         item.connect('activate', self.launch_alacritty, files)
         return [item]
@@ -36,7 +36,7 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
         item = Nautilus.MenuItem(
             name="AlacrittyOpenBackGround",
             label="Ouvrir dans Alacritty",
-            tip="Open the current directory on alacritty"
+            tip="Ouvre le dossier courant dans alacritty"
         )
         item.connect('activate', self.launch_alacritty, [file_])
         return [item]
